@@ -48,4 +48,16 @@ public class Connection : MonoBehaviourPunCallbacks
         connectButtonObj.gameObject.SetActive(true);
         isConnecting = false;
     }
+
+    public override void OnJoinedRoom()
+    {
+        PhotonNetwork.LoadLevel("game-scene");
+    }
+
+    public override void OnJoinRandomFailed(short returnCode, string message)
+    {
+        Debug.Log("Failed attempt at connecting to a game room. Code: " 
+            + returnCode + "; Message: " + message + ". Let's create a game room!");
+        PhotonNetwork.CreateRoom("game-room", new RoomOptions() { MaxPlayers = 2 });
+    }
 }
