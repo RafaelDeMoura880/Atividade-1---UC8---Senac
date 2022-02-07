@@ -46,6 +46,6 @@ public class PlayerScript : MonoBehaviourPun
             return;
 
         playerRb.AddTorque(inputZturn * speedTurn, ForceMode2D.Force);
-        playerRb.AddForce(new Vector2(0, inputYmove * speed), ForceMode2D.Force);
+        playerRb.AddForce(transform.up * speed, ForceMode2D.Impulse);
     }
 }
