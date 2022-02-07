@@ -6,10 +6,11 @@ using UnityEngine;
 public class PlayerScript : MonoBehaviourPun
 {
     public float speed;
+    public float speedTurn = 3;
 
     Rigidbody2D playerRb;
-    float inputH;
-    float inputV;
+    float inputYmove;
+    float inputZturn;
 
     public int score;
 
@@ -28,5 +29,23 @@ public class PlayerScript : MonoBehaviourPun
 
         if (photonView.IsMine)
             playerColor.material.color = Color.green;
+    }
+
+    private void Update()
+    {
+        if (!photonView.IsMine)
+            return;
+
+        inputZturn = Input.GetAxis("Horizontal");
+        inputYmove = Input.GetAxis("Vertical");
+    }
+
+    private void FixedUpdate()
+    {
+        if (!photonView.IsMine)
+            return;
+
+        playerRb.AddTorque(inputZturn * speedTurn, ForceMode2D.Force);
+        playerRb.AddForce(new Vector2(0, inputYmove * speed), ForceMode2D.Force);
     }
 }
