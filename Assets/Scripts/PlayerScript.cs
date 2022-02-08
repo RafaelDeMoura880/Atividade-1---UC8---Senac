@@ -7,12 +7,12 @@ public class PlayerScript : MonoBehaviourPun
 {
     public float speed;
     public float speedTurn = 3;
+    public int score;
+
+    bool isMoving;
+    float turnDirection;
 
     Rigidbody2D playerRb;
-    float inputYmove;
-    float inputZturn;
-
-    public int score;
 
     SpriteRenderer playerColor;
 
@@ -36,8 +36,13 @@ public class PlayerScript : MonoBehaviourPun
         if (!photonView.IsMine)
             return;
 
-        inputZturn = Input.GetAxis("Horizontal");
-        inputYmove = Input.GetAxis("Vertical");
+        isMoving = Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow);
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+            turnDirection = 1f;
+        else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+            turnDirection = -1f;
+        else
+            turnDirection = 0f;
     }
 
     private void FixedUpdate()
@@ -45,7 +50,9 @@ public class PlayerScript : MonoBehaviourPun
         if (!photonView.IsMine)
             return;
 
-        playerRb.AddTorque(inputZturn * speedTurn, ForceMode2D.Force);
-        playerRb.AddForce(transform.up * speed, ForceMode2D.Impulse);
+        if (isMoving)
+            playerRb.AddForce(this.transform.up * this.speed);
+        if (turnDirection != 0f)
+            playerRb.AddTorque(turnDirection * this.speedTurn);
     }
 }
