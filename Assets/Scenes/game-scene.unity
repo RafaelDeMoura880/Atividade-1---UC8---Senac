@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 139663973}
   - component: {fileID: 139663972}
   - component: {fileID: 139663971}
+  - component: {fileID: 139663975}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -221,6 +222,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &139663975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 139663970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 571b46fc9b377bf44a580056577861cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreText: {fileID: 1301634302}
 --- !u!1 &764127385
 GameObject:
   m_ObjectHideFlags: 0
@@ -829,6 +843,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1901482005}
   - component: {fileID: 1901482006}
+  - component: {fileID: 1901482007}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -864,6 +879,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 3323843407952061854, guid: 045237bee88552a49b50ffd02fab2ce0,
     type: 3}
+--- !u!114 &1901482007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1901482004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33136186467084f488353794c0b0ff72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jewelPrefab: {fileID: 1191454080394082564, guid: 0538a8213f801374ba1fe88310e356ca,
+    type: 3}
+  maxJewels: 5
 --- !u!1 &2031235771
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine;
 
-public class PlayerScript : MonoBehaviourPun
+public class PlayerScript : MonoBehaviourPun, IPunObservable
 {
     public float speed;
     public float speedTurn = 3;
@@ -54,5 +54,24 @@ public class PlayerScript : MonoBehaviourPun
             playerRb.AddForce(this.transform.up * this.speed);
         if (turnDirection != 0f)
             playerRb.AddTorque(turnDirection * this.speedTurn);
+    }
+
+    [PunRPC]
+    void RPCScore()
+    {
+        score++;
+    }
+
+    public void Score()
+    {
+        photonView.RPC("RPCScore", RpcTarget.All);
+    }
+    
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+            stream.SendNext(score);
+        else
+            score = (int)stream.ReceiveNext();
     }
 }
